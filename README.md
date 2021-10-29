@@ -12,7 +12,7 @@ bsdf_name:[
   0-1-2-3'Base Color','Base Color','Base Color','Base Color',
   4'Subsurface',
   5'Subsurface Radius',
-  6 7 8 9'Subsurface Color','Subsurface Color','Subsurface Color','Subsurface Color',
+  6-7-8-9'Subsurface Color','Subsurface Color','Subsurface Color','Subsurface Color',
   10'Metallic',
   11'Specular',
   12'Specular Tint',
@@ -25,6 +25,5 @@ bsdf_name:[
   19'Clearcoat Roughness',
   20'IOR',
   21'Transmission',
-  22'Transmission Roughness',
 ]
 ```

@@ -7,7 +7,8 @@ import numpy as np
 from PIL import Image
 import torchvision.transforms.functional as TF
 import random
-from linear import Model
+# from linear import Model
+from tanh import Model
 random.seed(4)
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -27,10 +28,10 @@ if __name__ == '__main__':
     model.eval()
     # print(args.img)
     input_img = Image.open(args.img).convert('RGB')
-    input_img= input_img.resize((200,200))
+    input_img= input_img.resize((100,100))
     input_img = TF.to_tensor(input_img)
     input_img=np.array(input_img)
-    input_img=np.reshape(input_img,(120000))
+    input_img=np.reshape(input_img,(30000))
     input_img=torch.Tensor(input_img).to(device)
     # input_img=input_img.unsqueeze(0)
 
@@ -88,6 +89,7 @@ if __name__ == '__main__':
 # Emission Strength
 # Alpha
 #     # material=material[0]
+    # material=list(map(lambda x: x/2 ,material))
     print(material[0])
     with open(args.out,"w") as f:
         # print(material)

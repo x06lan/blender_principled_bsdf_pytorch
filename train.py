@@ -11,7 +11,8 @@ import numpy as np
 import cv2
 from PIL import Image
 import random
-from vgg16 import Model
+# from vgg16 import Model
+from tanh import Model
 # from sq import SqueezeNet
 # Model=SqueezeNet
 # from linear import Model
@@ -37,17 +38,17 @@ datas = f.read()
 datas = json.loads(datas)
 # print(len(datas[0]))
 model = Model().to(device)
-optimizer = torch.optim.RMSprop(model.parameters(), lr=0.0003)
+optimizer = torch.optim.RMSprop(model.parameters(), lr=10**-5)
 # loss_function=nn.L1Loss(reduction='mean')
-# loss_function = torch.nn.MSELoss()
-loss_function = nn.SmoothL1Loss()
+loss_function = torch.nn.MSELoss()
+# loss_function = nn.SmoothL1Loss()
 
 
 losss = []
 all_pre = []
 targe_pre = []
-epochs = 100
-run_sample = 1
+epochs = 40
+run_sample = 20
 
 for epoch in range(epochs):
     input_img_arr = []
@@ -59,17 +60,17 @@ for epoch in range(epochs):
         input_img = Image.open(
             'data/1000_100_noe/image/{}.png'.format(i)).convert('RGB')
         # input_img = input_img.resize((200, 200))
-        input_img = input_img.resize((224, 224))
+        input_img = input_img.resize((100, 100))
 
-        # input_img = np.reshape(input_img, (120000))
         input_img = TF.to_tensor(input_img)
         input_img=np.array(input_img)
+        input_img = np.reshape(input_img, (30000))
 
         # print(input_img.shape)
 
         input_targe = bsdf_arg(datas[i])
         input_targe = np.array(input_targe)
-
+        # print(input_targe.shape)
         input_img_arr.append(input_img)
         input_targe_arr.append(input_targe)
 
