@@ -7,7 +7,8 @@ use blender to render 1000 100*100 pixel image with random bsdf material arg
 json file 
 save every bsdf material arg of image 
 every bsdf material have 
-bsdf_name:
+```json
+bsdf_name:[
   0-1-2-3'Base Color','Base Color','Base Color','Base Color',
   4'Subsurface',
   5'Subsurface Radius',
@@ -25,3 +26,5 @@ bsdf_name:
   20'IOR',
   21'Transmission',
   22'Transmission Roughness',
+]
+```
